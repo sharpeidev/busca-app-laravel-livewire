@@ -37,6 +37,20 @@ services:
     networks:
       - busca_app_network
 
+  node:
+    container_name: busca-app-node
+    image: node:22
+    restart: unless-stopped
+    working_dir: /var/www/html/laravel-app
+    volumes:
+      - ./laravel-app:/var/www/html/laravel-app
+    ports:
+      - "5173:5173"
+    entrypoint: ["npm", "run", "dev"]
+    command: ["sh", "-c", "npm install && npm run dev"]
+    networks:
+      - busca_app_network
+
 volumes:
   dbdata:
     driver: local

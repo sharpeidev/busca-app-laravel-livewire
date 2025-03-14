@@ -25,6 +25,9 @@ COPY ./laravel-app /var/www/html/laravel-app
 # Instala dependências do Composer.
 RUN composer install --optimize-autoloader --no-dev
 
+# Instala o Livewire.
+RUN composer require livewire/livewire
+
 # Ajusta permissões do Laravel.
 RUN chown -R www-data:www-data /var/www/html/laravel-app/storage /var/www/html/laravel-app/bootstrap/cache
 RUN chmod -R 777 /var/www/html/laravel-app/storage /var/www/html/laravel-app/bootstrap/cache
